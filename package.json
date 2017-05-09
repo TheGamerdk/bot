@@ -1,0 +1,17 @@
+{
+  "name": "bot",
+  "version": "0.2.6",
+  "description": "Discord bot",
+  "engines": {
+    "node": "6.10.2"
+  },
+  "main": "game_bot.js",
+  "scripts": {
+    "start": "node game_bot.js"
+  },
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "discord.js": "11.1.0",
+    "request": "2.81.0"
+  }
+}
