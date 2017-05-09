@@ -12,6 +12,7 @@ console.log("Starting Up");
 
 client.on("ready", () => {
 	console.log("Ready!");
+	console.log(process.cwd());
 	StartLoop();
 	fs.readFile("/Users/Carl-Gustav/data/id.txt", 'utf8', function(err, data) {
 			if (err) throw err;
