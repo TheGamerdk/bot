@@ -13,25 +13,45 @@ console.log("Starting Up");
 client.on("ready", () => {
 	console.log("Ready!");
 	StartLoop();
-	client.user.setGame("trade");
-	fs.readFile("/Users/Jesper/data/steel.txt", 'utf8', function(err, data) {
+	fs.readFile("/Users/Carl-Gustav/data/id.txt", 'utf8', function(err, data) {
+			if (err) throw err;
+	        	var temp = parseInt(data, 10);
+	        	id = temp;
+	        });
+
+	fs.readFile("/Users/Carl-Gustav/data/steel.txt", 'utf8', function(err, data) {
 			if (err) throw err;
 	        	steel_threshold = data;
 	        });
-	fs.readFile("/Users/Jesper/data/alu.txt", 'utf8', function(err, data) {
+	fs.readFile("/Users/Carl-Gustav/data/alu.txt", 'utf8', function(err, data) {
 			if (err) throw err;
 	        	alu_threshold = data;
 	        });
-	fs.readFile("/Users/Jesper/data/gas.txt", 'utf8', function(err, data) {
+	fs.readFile("/Users/Carl-Gustav/data/gas.txt", 'utf8', function(err, data) {
 			if (err) throw err;
 	        	gas_threshold = data;
 	        });
-	fs.readFile("/Users/Jesper/data/ammo.txt", 'utf8', function(err, data) {
+	fs.readFile("/Users/Carl-Gustav/data/ammo.txt", 'utf8', function(err, data) {
 			if (err) throw err;
 	        	ammo_threshold = data;
 	        });
+	fs.readFile("/Users/Carl-Gustav/data/requests.json", 'utf8', function(err, data) {
+			if (err) throw err;
+				if (data === "") {
+
+				} else {
+					request_json = JSON.parse(data);
+				}
+	        });
+	fs.readFile("/Users/Carl-Gustav/data/write.txt", 'utf8', function(err, data) {
+			if (err) throw err;
+	        	first_write = data;
+	        });
+	
 });
 client.login("MzA5MDQ1NjY2NzU0MDY4NDkx.C-pszg.vDgvEGhpwH_BybH_TBLSfunykvU");
+
+var request_json;
 
 var food_json;
 var steel_json;
@@ -177,6 +197,7 @@ function getJson() {
 function StartLoop() {
 	console.log("Looped");
 	getJson();
+	confirm = false;
 	setTimeout(StartLoop, 300000)
 }
 
@@ -244,14 +265,11 @@ client.on("message", function(message) {
 	}
 
 	if (msg.content === prefix + "help") {
-		message.reply("Use t:price {resource} to see current prices (updated every 5 minutes-ish)"+ "\n" + " t:settings if you want to set anything.")
+		message.reply("Use t:price {resource} to see current prices (updated every 5 minutes-ish)"+ "\n" + " t:settings if you want to set anything. \n t:request [what you want]");
 	}
 
 	if (msg.isMentioned(client.user)) {
 		message.reply("Use t:help if you need help" + "\n" + "*contact TheGamer01 if you want to report a bug*");
-	}
-	if(msg.content === prefix + "price hooker") {
-		message.reply("10$, ask kastor for more info")
 	}
 	if (msg.content === prefix + "status") {
 		message.reply("Market Index: $" + steel_json.marketindex + "\n \n" + "Average Food Price: $" + food_json.avgprice + "\n \n" +
@@ -260,6 +278,14 @@ client.on("message", function(message) {
 		"Average Bauxite Price: $" + baux_json.avgprice + "\n \n" + "Average Iron Price: $" + iron_json.avgprice + "\n \n" +
 		"Average Lead Price: $" + lead_json.avgprice + "\n \n" + "Average Uranium Price: $" + uran_json.avgprice + "\n \n" +
 		"Average Oil Price: $" + oil_json.avgprice + "\n \n" + "Average Coal Price: $" + coal_json.avgprice);
+	}
+	if (msg.content === prefix + "lowest") {
+		message.reply("Market Index: $" + steel_json.marketindex + "\n \n" + "Lowest Food Price: $" + food_json.lowestbuy.price + "\n \n" +
+		"Lowest Steel Price: $" + steel_json.lowestbuy.price + "\n \n" + "Lowest Aluminum price: $" + alu_json.lowestbuy.price + "\n \n" + 
+		"Lowest Gasoline Price: $" + gas_json.lowestbuy.price + "\n \n" + "Lowest Munition Price: $" + munition_json.lowestbuy.price + "\n \n" +
+		"Lowest Bauxite Price: $" + baux_json.lowestbuy.price + "\n \n" + "Lowest Iron Price: $" + iron_json.lowestbuy.price + "\n \n" +
+		"Lowest Lead Price: $" + lead_json.lowestbuy.price + "\n \n" + "Lowest Uranium Price: $" + uran_json.lowestbuy.price + "\n \n" +
+		"Lowest Oil Price: $" + oil_json.lowestbuy.price + "\n \n" + "Lowest Coal Price: $" + coal_json.lowestbuy.price);
 	}
 	if (msg.content.startsWith(prefix + "calculate")) {
 		if (msg.content.match(/lowest/i)) {
@@ -352,48 +378,192 @@ client.on("message", function(message) {
 	}
 	if (msg.content === prefix + "thresholds") {
 		msg.reply("Currently set thresholds \n Steel Threshold: " + steel_threshold + "$ \n Aluminum Threshold: " + alu_threshold + "$ \n Gasoline Threshold: " + 
-			"\n Munition Threshold: " + ammo_threshold + "$");
+		gas_threshold+ "$ \n Munition Threshold: " + ammo_threshold + "$");
 	}
 	if (msg.content.startsWith(prefix + "setting threshold steel")) {
 		let temp = stripAlphaChars(msg.content);
 		steel_threshold = parseInt(temp, 10);
-		fs.writeFile("/Users/Jesper/data/steel.txt", steel_threshold);
+		fs.writeFile("/Users/Carl-Gustav/data/steel.txt", steel_threshold);
 		client.channels.get("303965170601033748").send("Threshold set");
 	}
 	if (msg.content.startsWith(prefix + "setting threshold aluminum")) {
 		let temp = stripAlphaChars(msg.content);
 		alu_threshold = parseInt(temp, 10);
-		fs.writeFile("/Users/Jesper/data/alu.txt", alu_threshold);
+		fs.writeFile("/Users/Carl-Gustav/data/alu.txt", alu_threshold);
 		client.channels.get("303965170601033748").send("Threshold set");
 	}
 	if (msg.content.startsWith(prefix + "setting threshold aluminium")) {
 		let temp = stripAlphaChars(msg.content);
 		alu_threshold = parseInt(temp, 10);
-		fs.writeFile("/Users/Jesper/data/alu.txt", alu_threshold);
+		fs.writeFile("/Users/Carl-Gustav/data/alu.txt", alu_threshold);
 		client.channels.get("303965170601033748").send("Threshold set");
 	}
 	if (msg.content.startsWith(prefix + "setting threshold gasoline")) {
 		let temp = stripAlphaChars(msg.content);
 		gas_threshold = parseInt(temp, 10);
-		fs.writeFile("/Users/Jesper/data/gas.txt", gas_threshold);
+		fs.writeFile("/Users/Carl-Gustav/data/gas.txt", gas_threshold);
 		client.channels.get("303965170601033748").send("Threshold set");
 	}
 	if (msg.content.startsWith(prefix + "setting threshold munition")) {
 		let temp = stripAlphaChars(msg.content);
 		ammo_threshold = parseInt(temp, 10);
-		fs.writeFile("/Users/Jesper/data/ammo.txt", ammo_threshold);
+		fs.writeFile("/Users/Carl-Gustav/data/ammo.txt", ammo_threshold);
 		client.channels.get("303965170601033748").send("Threshold set");
 	}
 	if (msg.content.startsWith(prefix + "setting threshold munitions")) {
 		let temp = stripAlphaChars(msg.content);
 		ammo_threshold = parseInt(temp, 10);
-		fs.writeFile("/Users/Jesper/data/ammo.txt", ammo_threshold);
+		fs.writeFile("/Users/Carl-Gustav/data/ammo.txt", ammo_threshold);
 		client.channels.get("303965170601033748").send("Threshold set");
+	}
+	if (msg.author.username === "Kastor") {
+
+	} else {
+		if (msg.content === "pasta") {
+		client.channels.get("303965170601033748").send("u suck <@184525195740971008>");
+	}
+	if (msg.content === "pizza") {
+		client.channels.get("303965170601033748").send("DOWN WITH THE TYRANT");
+	}
 	}
 	if (msg.content === prefix + "update") {
 		StartLoop();
+		msg.reply("Updating prices....");
 	}
+	if (msg.content === prefix + "request cancel") {
+		if (requesting === true) {
+			msg.reply("Request cancelled");
+			requesting = false;
+			request_resources = null;
+			id_request = null;
+		}
+	}
+	if (msg.content.startsWith(prefix + "request")) {
+		if (msg.content.match(/id/i)) {
+
+		} else {
+			if (msg.content.match(/finish/i)) {
+
+			} else {
+				perv = msg.author.username;
+				msg.reply("Request message: " + msg.content.replace(prefix + "request ", "") + " Do t:request id {nation id}");
+				requesting = true;
+				request_resources = msg.content.replace(prefix + "request ", "");
+			}
+		}
+	}
+	if (msg.content.startsWith(prefix + "request id")) {
+		if (msg.content.match(/finish/i)) {
+
+		} else {
+			if (requesting === true) {
+				msg.reply("Current request: " + request_resources + " ID: " + msg.content.replace(prefix + "request id ", "") + " . Use t:request finish to submit");
+				id_request = msg.content.replace(prefix + "request id ", "");
+			}
+		}
+	}
+	if (msg.content === prefix + "request finish") {
+		if (requesting === true) {
+			createRequest();
+			msg.reply("Request added");
+			fs.readFile("/Users/Carl-Gustav/data/requests.json", 'utf8', function(err, data) {
+				if (err) throw err;
+		        	request_json = JSON.parse(data);
+		});
+		}
+	}
+	if (msg.content === prefix + "list") {
+		console.log(request_json);
+		if (request_json == null) {
+			msg.reply("No requests found!");
+		} else {
+			
+			msg.reply("Current requests: ");
+			for (var i = 0; i < request_json.table.length; i++) {
+				var obj = request_json.table[i];
+				client.channels.get("303965170601033748").send("Request ID: " + obj.identity + "\n Request: " + obj.request + "\n Nation Link: https://politicsandwar.com/nation/id=" + obj.nation + "\n Requester: " + obj.user);
+			}
+		}
+	}
+	if (msg.content === prefix + "clear") {
+		if (confirm === false) {
+			msg.reply("Are you sure? Type again to confirm");
+			confirm = true;
+		} else {
+			msg.reply("All requests deleted");
+			confirm = false;
+			fs.truncate('/Users/Carl-Gustav/data/requests.json');
+			fs.truncate('/Users/Carl-Gustav/data/id.txt');
+			fs.writeFile("/Users/Carl-Gustav/data/write.txt", "true");
+			first_write = "true";
+			if (!request_json == "") {
+				fs.readFile("/Users/Carl-Gustav/data/requests.json", 'utf8', function(err, data) {
+					if (err) throw err;
+		        		request_json = JSON.parse(data);
+				});
+			}
+		}
+	}
+
+	/*if (msg.content.startsWith(prefix + "clear")) {
+		if (msg.content === prefix + "clear") {
+
+		} else {
+			//var deleted = request_json.table.splice(1);
+			request_json.table.splice(request_json.table.indexOf(2));
+			console.log(request_json.table);
+			console.log(request_json.table.indexOf(2));
+
+		}
+	} */
+
 });
+
+var perv;
+
+var request_resources;
+var requesting;
+var id_request;
+var id;
+var confirm;
+var first_write;
+
+function createRequest() {
+	var obj = {
+		table: []
+	}
+	var json;
+	id++;
+	if (first_write === "true") {
+		obj.table.push({identity: id, request: request_resources, nation: id_request, user: perv})
+		json = JSON.stringify(obj);
+		fs.writeFile("/Users/Carl-Gustav/data/requests.json", json, "utf8");
+		fs.writeFile("/Users/Carl-Gustav/data/id.txt", id);
+		fs.writeFile("/Users/Carl-Gustav/data/write.txt", "false");
+		first_write = "false";
+	} else {
+		fs.readFile("/Users/Carl-Gustav/data/requests.json", 'utf8', function(err, data) {
+			if (err) throw err;
+		        request_json = data;
+		     	obj = JSON.parse(data);
+		      	obj.table.push({identity: id, request: request_resources, nation: id_request, user: perv})
+		      	console.log(perv);
+		       	json = JSON.stringify(obj);
+		       	fs.writeFile("/Users/Carl-Gustav/data/requests.json", json, "utf8");
+		       	fs.writeFile("/Users/Carl-Gustav/data/id.txt", id);
+		       	request_resources = null;
+				id_request = null;
+				perv = null;
+				requesting = false;
+				fs.readFile("/Users/Carl-Gustav/data/requests.json", 'utf8', function(err, data) {
+				if (err) throw err;
+		        	request_json = JSON.parse(data);
+		});
+	});
+	}
+
+}
+
 function stripAlphaChars(source) { 
   var out = source.replace(/[^0-9]/g, ''); 
 
@@ -402,21 +572,21 @@ function stripAlphaChars(source) {
 
 function processSteelThreshold() {
 	if(steel_json.lowestbuy.price <= steel_threshold) {
-		client.channels.get("303965170601033748").send("@here Steel is under " + steel_threshold + "$!");
+		client.channels.get("303965170601033748").send("@here Steel is under " + steel_threshold + "$! \n Quantity: " + steel_json.lowestbuy.amount + "\n https://politicsandwar.com/index.php?id=90&display=world&resource1=steel&buysell=sell&ob=price&od=ASC&maximum=15&minimum=0&search=Go");
 	}
 }
 function processAluThreshold() {
 	if(alu_json.lowestbuy.price <= alu_threshold) {
-		client.channels.get("303965170601033748").send("@here Aluminum is under " + alu_threshold + "$!");
+		client.channels.get("303965170601033748").send("@here Aluminum is under " + alu_threshold + "$! \n Quantity: " + alu_json.lowestbuy.amount + "\n https://politicsandwar.com/index.php?id=90&display=world&resource1=aluminum&buysell=sell&ob=price&od=ASC&maximum=15&minimum=0&search=Go");
 	}
 }
 function processMunitionsThreshold() {
 	if(munition_json.lowestbuy.price <= ammo_threshold) {
-		client.channels.get("303965170601033748").send("@here Munitions are under " + alu_threshold + "$!");
+		client.channels.get("303965170601033748").send("@here Munitions are under " + ammo_threshold + "$! \n Quantity: " + munition_json.lowestbuy.amount + "\n https://politicsandwar.com/index.php?id=90&display=world&resource1=muntions&buysell=sell&ob=price&od=ASC&maximum=15&minimum=0&search=Go");
 	}
 }
 function processGasolineThreshold() {
 	if(gas_json.lowestbuy.price <= gas_threshold) {
-		client.channels.get("303965170601033748").send("@here Gasoline is under " + alu_threshold + "$!");
+		client.channels.get("303965170601033748").send("@here Gasoline is under " + gas_threshold + "$! \n Quantity: " + gas_json.lowestbuy.amount + "\n https://politicsandwar.com/index.php?id=90&display=world&resource1=gasoline&buysell=sell&ob=price&od=ASC&maximum=15&minimum=0&search=Go");
 	}
 }
