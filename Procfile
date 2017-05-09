@@ -1,1 +1,1 @@
-worker: game_bot.js
+worker: node game_bot.js
