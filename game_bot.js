@@ -582,7 +582,7 @@ function processAluThreshold() {
 }
 function processMunitionsThreshold() {
 	if(munition_json.lowestbuy.price <= ammo_threshold) {
-		client.channels.get("303965170601033748").send("@here Munitions are under " + ammo_threshold + "$! \n Quantity: " + munition_json.lowestbuy.amount + "\n https://politicsandwar.com/index.php?id=90&display=world&resource1=muntions&buysell=sell&ob=price&od=ASC&maximum=15&minimum=0&search=Go");
+		client.channels.get("303965170601033748").send("@here Munitions are under " + ammo_threshold + "$! \n Quantity: " + munition_json.lowestbuy.amount + "\n https://politicsandwar.com/index.php?id=90&display=world&resource1=munitions&buysell=sell&ob=price&od=ASC&maximum=15&minimum=0&search=Go");
 	}
 }
 function processGasolineThreshold() {
