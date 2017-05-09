@@ -571,28 +571,28 @@ function stripAlphaChars(source) {
 }
 
 function processSteelThreshold() {
-	if(steel_json.lowestbuy.price <= steel_threshold) {
+	if(steel_json.lowestbuy.price < steel_threshold) {
 		console.log(steel_json.lowestbuy.price);
 		console.log(steel_threshold);
 		client.channels.get("303965170601033748").send("@here Steel is under " + steel_threshold + "$! \n Quantity: " + steel_json.lowestbuy.amount + "\n https://politicsandwar.com/index.php?id=90&display=world&resource1=steel&buysell=sell&ob=price&od=ASC&maximum=15&minimum=0&search=Go");
 	}
 }
 function processAluThreshold() {
-	if(alu_json.lowestbuy.price <= alu_threshold) {
+	if(alu_json.lowestbuy.price < alu_threshold) {
 		console.log(alu_json.lowestbuy.price);
 		console.log(alu_threshold);
 		client.channels.get("303965170601033748").send("@here Aluminum is under " + alu_threshold + "$! \n Quantity: " + alu_json.lowestbuy.amount + "\n https://politicsandwar.com/index.php?id=90&display=world&resource1=aluminum&buysell=sell&ob=price&od=ASC&maximum=15&minimum=0&search=Go");
 	}
 }
 function processMunitionsThreshold() {
-	if(munition_json.lowestbuy.price <= ammo_threshold) {
+	if(munition_json.lowestbuy.price < ammo_threshold) {
 		console.log("stuff: " + munition_json.lowestbuy.price);
 		console.log("stuff: " + ammo_threshold);
 		client.channels.get("303965170601033748").send("@here Munitions are under " + ammo_threshold + "$! \n Quantity: " + munition_json.lowestbuy.amount + "\n https://politicsandwar.com/index.php?id=90&display=world&resource1=munitions&buysell=sell&ob=price&od=ASC&maximum=15&minimum=0&search=Go");
 	}
 }
 function processGasolineThreshold() {
-	if(gas_json.lowestbuy.price <= gas_threshold) {
+	if(gas_json.lowestbuy.price < gas_threshold) {
 		console.log(gas_json.lowestbuy.price);
 		console.log(gas_threshold);
 		client.channels.get("303965170601033748").send("@here Gasoline is under " + gas_threshold + "$! \n Quantity: " + gas_json.lowestbuy.amount + "\n https://politicsandwar.com/index.php?id=90&display=world&resource1=gasoline&buysell=sell&ob=price&od=ASC&maximum=15&minimum=0&search=Go");
