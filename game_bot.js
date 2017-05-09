@@ -12,31 +12,30 @@ console.log("Starting Up");
 
 client.on("ready", () => {
 	console.log("Ready!");
-	console.log(process.cwd());
 	StartLoop();
-	fs.readFile("/Users/Carl-Gustav/data/id.txt", 'utf8', function(err, data) {
+	fs.readFile(process.cwd() + "/data/id.txt", 'utf8', function(err, data) {
 			if (err) throw err;
 	        	var temp = parseInt(data, 10);
 	        	id = temp;
 	        });
 
-	fs.readFile("/Users/Carl-Gustav/data/steel.txt", 'utf8', function(err, data) {
+	fs.readFile(process.cwd() + "/data/steel.txt", 'utf8', function(err, data) {
 			if (err) throw err;
 	        	steel_threshold = data;
 	        });
-	fs.readFile("/Users/Carl-Gustav/data/alu.txt", 'utf8', function(err, data) {
+	fs.readFile(process.cwd() + "/data/alu.txt", 'utf8', function(err, data) {
 			if (err) throw err;
 	        	alu_threshold = data;
 	        });
-	fs.readFile("/Users/Carl-Gustav/data/gas.txt", 'utf8', function(err, data) {
+	fs.readFile(process.cwd() + "/data/gas.txt", 'utf8', function(err, data) {
 			if (err) throw err;
 	        	gas_threshold = data;
 	        });
-	fs.readFile("/Users/Carl-Gustav/data/ammo.txt", 'utf8', function(err, data) {
+	fs.readFile(process.cwd() + "/data/ammo.txt", 'utf8', function(err, data) {
 			if (err) throw err;
 	        	ammo_threshold = data;
 	        });
-	fs.readFile("/Users/Carl-Gustav/data/requests.json", 'utf8', function(err, data) {
+	fs.readFile(process.cwd() + "/data/requests.json", 'utf8', function(err, data) {
 			if (err) throw err;
 				if (data === "") {
 
@@ -44,7 +43,7 @@ client.on("ready", () => {
 					request_json = JSON.parse(data);
 				}
 	        });
-	fs.readFile("/Users/Carl-Gustav/data/write.txt", 'utf8', function(err, data) {
+	fs.readFile(process.cwd() + "/data/write.txt", 'utf8', function(err, data) {
 			if (err) throw err;
 	        	first_write = data;
 	        });
@@ -384,37 +383,37 @@ client.on("message", function(message) {
 	if (msg.content.startsWith(prefix + "setting threshold steel")) {
 		let temp = stripAlphaChars(msg.content);
 		steel_threshold = parseInt(temp, 10);
-		fs.writeFile("/Users/Carl-Gustav/data/steel.txt", steel_threshold);
+		fs.writeFile(process.cwd() + "/data/steel.txt", steel_threshold);
 		client.channels.get("303965170601033748").send("Threshold set");
 	}
 	if (msg.content.startsWith(prefix + "setting threshold aluminum")) {
 		let temp = stripAlphaChars(msg.content);
 		alu_threshold = parseInt(temp, 10);
-		fs.writeFile("/Users/Carl-Gustav/data/alu.txt", alu_threshold);
+		fs.writeFile(process.cwd() + "/data/alu.txt", alu_threshold);
 		client.channels.get("303965170601033748").send("Threshold set");
 	}
 	if (msg.content.startsWith(prefix + "setting threshold aluminium")) {
 		let temp = stripAlphaChars(msg.content);
 		alu_threshold = parseInt(temp, 10);
-		fs.writeFile("/Users/Carl-Gustav/data/alu.txt", alu_threshold);
+		fs.writeFile(process.cwd() + "/data/alu.txt", alu_threshold);
 		client.channels.get("303965170601033748").send("Threshold set");
 	}
 	if (msg.content.startsWith(prefix + "setting threshold gasoline")) {
 		let temp = stripAlphaChars(msg.content);
 		gas_threshold = parseInt(temp, 10);
-		fs.writeFile("/Users/Carl-Gustav/data/gas.txt", gas_threshold);
+		fs.writeFile(process.cwd() + "/data/gas.txt", gas_threshold);
 		client.channels.get("303965170601033748").send("Threshold set");
 	}
 	if (msg.content.startsWith(prefix + "setting threshold munition")) {
 		let temp = stripAlphaChars(msg.content);
 		ammo_threshold = parseInt(temp, 10);
-		fs.writeFile("/Users/Carl-Gustav/data/ammo.txt", ammo_threshold);
+		fs.writeFile(process.cwd() + "/data/ammo.txt", ammo_threshold);
 		client.channels.get("303965170601033748").send("Threshold set");
 	}
 	if (msg.content.startsWith(prefix + "setting threshold munitions")) {
 		let temp = stripAlphaChars(msg.content);
 		ammo_threshold = parseInt(temp, 10);
-		fs.writeFile("/Users/Carl-Gustav/data/ammo.txt", ammo_threshold);
+		fs.writeFile(process.cwd() + "/data/ammo.txt", ammo_threshold);
 		client.channels.get("303965170601033748").send("Threshold set");
 	}
 	if (msg.author.username === "Kastor") {
@@ -467,7 +466,7 @@ client.on("message", function(message) {
 		if (requesting === true) {
 			createRequest();
 			msg.reply("Request added");
-			fs.readFile("/Users/Carl-Gustav/data/requests.json", 'utf8', function(err, data) {
+			fs.readFile(process.cwd() + "/data/requests.json", 'utf8', function(err, data) {
 				if (err) throw err;
 		        	request_json = JSON.parse(data);
 		});
@@ -493,12 +492,12 @@ client.on("message", function(message) {
 		} else {
 			msg.reply("All requests deleted");
 			confirm = false;
-			fs.truncate('/Users/Carl-Gustav/data/requests.json');
-			fs.truncate('/Users/Carl-Gustav/data/id.txt');
-			fs.writeFile("/Users/Carl-Gustav/data/write.txt", "true");
+			fs.truncate(process.cwd() + "/data/requests.json");
+			fs.truncate(process.cwd() + "/data/id.txt");
+			fs.writeFile(process.cwd() + "/data/write.txt", "true");
 			first_write = "true";
 			if (!request_json == "") {
-				fs.readFile("/Users/Carl-Gustav/data/requests.json", 'utf8', function(err, data) {
+				fs.readFile(process.cwd() + "/data/requests.json", 'utf8', function(err, data) {
 					if (err) throw err;
 		        		request_json = JSON.parse(data);
 				});
@@ -538,25 +537,25 @@ function createRequest() {
 	if (first_write === "true") {
 		obj.table.push({identity: id, request: request_resources, nation: id_request, user: perv})
 		json = JSON.stringify(obj);
-		fs.writeFile("/Users/Carl-Gustav/data/requests.json", json, "utf8");
-		fs.writeFile("/Users/Carl-Gustav/data/id.txt", id);
-		fs.writeFile("/Users/Carl-Gustav/data/write.txt", "false");
+		fs.writeFile(process.cwd() + "/data/requests.json", json, "utf8");
+		fs.writeFile(process.cwd() + "/data/id.txt", id);
+		fs.writeFile(process.cwd() + "/data/write.txt", "false");
 		first_write = "false";
 	} else {
-		fs.readFile("/Users/Carl-Gustav/data/requests.json", 'utf8', function(err, data) {
+		fs.readFile(process.cwd() + "/data/requests.json", 'utf8', function(err, data) {
 			if (err) throw err;
 		        request_json = data;
 		     	obj = JSON.parse(data);
 		      	obj.table.push({identity: id, request: request_resources, nation: id_request, user: perv})
 		      	console.log(perv);
 		       	json = JSON.stringify(obj);
-		       	fs.writeFile("/Users/Carl-Gustav/data/requests.json", json, "utf8");
-		       	fs.writeFile("/Users/Carl-Gustav/data/id.txt", id);
+		       	fs.writeFile(process.cwd() + "/data/requests.json", json, "utf8");
+		       	fs.writeFile(process.cwd() + "/data/id.txt", id);
 		       	request_resources = null;
 				id_request = null;
 				perv = null;
 				requesting = false;
-				fs.readFile("/Users/Carl-Gustav/data/requests.json", 'utf8', function(err, data) {
+				fs.readFile(process.cwd() + "/data/requests.json", 'utf8', function(err, data) {
 				if (err) throw err;
 		        	request_json = JSON.parse(data);
 		});
