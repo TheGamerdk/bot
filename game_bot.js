@@ -168,6 +168,7 @@ function getJson() {
 
 	    if (!error && response.statusCode === 200) {
 	        console.log(body.lowestbuy.nationid); // Print the json response
+	        console.log(body);
 	        munition_json = body;
 	        processMunitionsThreshold();
 	    }
