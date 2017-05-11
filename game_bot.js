@@ -656,7 +656,7 @@ function processWarDeclarations() {
 
 					console.log(wars[i]);
 					console.log(obj.defensivewars);
-					client.channels.get("303964576603701249").send("<@212531662305755137> ALERT " + obj.leader + " was attacked by an enemy! \n https://politicsandwar.com/nation/id=" + obj.nationid + "&display=war");
+					client.channels.get("303964576603701249").send("<@259835683861037056> <@224426427833909248> ALERT " + obj.leader + " was attacked by an enemy! \n https://politicsandwar.com/nation/id=" + obj.nationid + "&display=war");
 				}
 			}
 		}
