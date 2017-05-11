@@ -12,6 +12,7 @@ console.log("Starting Up");
 
 client.on("ready", () => {
 	console.log("Ready!");
+	updateWarJSON();
 	StartLoop();
 	fs.readFile(process.cwd() + "/data/id.txt", 'utf8', function(err, data) {
 			if (err) throw err;
@@ -597,5 +598,64 @@ function processGasolineThreshold() {
 		console.log(gas_json.lowestbuy.price);
 		console.log(gas_threshold);
 		client.channels.get("303965170601033748").send("@here Gasoline is under " + gas_threshold + "$! \n Quantity: " + gas_json.lowestbuy.amount + "\n https://politicsandwar.com/index.php?id=90&display=world&resource1=gasoline&buysell=sell&ob=price&od=ASC&maximum=15&minimum=0&search=Go");
+	}
+}
+
+var war_json;
+var ids = [];
+var wars = [];
+
+//Warboat implementation
+function updateWarJSON() {
+	request({
+	    url: "https://politicsandwar.com/api/nations/",
+	    json: true
+	}, function (error, response, body) {
+
+	    if (!error && response.statusCode === 200) {
+	    	war_json = body;
+	    	if (setup == false) {
+	    		firstWarData();
+	    		setup = true;
+	    	}
+	    }
+	})
+}
+
+function firstWarData() {
+	for (var i = 0; i < war_json.nations.length; i++) {
+		var obj = war_json.nations[i];
+
+		if (obj.alliance == "Lordaeron") {
+			ids.push(obj.nationid);
+			wars.push(obj.defensivewars);
+			
+		}
+	}
+	console.log(wars);
+	console.log(ids);
+	StartWarLoop();
+}
+
+var setup = false;
+
+function StartWarLoop() {
+	console.log("War Looped");
+	updateWarJSON();
+	processWarDeclarations();
+	setTimeout(StartWarLoop, 150000)
+}
+
+function processWarDeclarations() {
+	for (var i = 0; i < ids.length; i++) {
+		for (var i2 = 0; i2 < war_json.nations.length; i2++) {
+			var obj = war_json.nations[i2];
+			if (obj.nationid == ids[i]) {
+				if (obj.defensivewars >= wars[i]) {
+				} else {
+					client.channels.get("303964576603701249").send("\@212531662305755137 ALERT " + obj.leader + "was attacked by an enemy! \n https://politicsandwar.com/nation/id=" + obj.nationid + "&display=war");
+				}
+			}
+		}
 	}
 }
