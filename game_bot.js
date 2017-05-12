@@ -208,72 +208,72 @@ process.on('unhandledRejection', console.error);
 client.on("message", function(message) {
 	var msg = message;
 	//channel = msg.channel;
-	if (msg.content === prefix + "prices") {
+	if (msg.content.toLowerCase() === prefix + "prices") {
 		message.reply("Use t:price {resource}, fx t:price steel" + "\n" + "Current resources added: All of them");
 	}
-	if (msg.content === prefix + "price") {
+	if (msg.content.toLowerCase() === prefix + "price") {
 		message.reply("Use t:price {resource}, fx t:price steel" + "\n" + "Current resources added: All of them");
 	}
-	if (msg.content === prefix + "price" + " steel") {
+	if (msg.content.toLowerCase() === prefix + "price" + " steel") {
 		message.reply("Lowest steel price: " + steel_json.lowestbuy.price + "$" + "\n" + "Highest steel buyer price: " +
 		steel_json.highestbuy.price + "$" + "\n" +"Last updated: " + updated_last_hour + ":" + updated_last_minutes + " (UTC Time)");
 	}
-	if (msg.content === prefix + "price" + " aluminum") {
+	if (msg.content.toLowerCase() === prefix + "price" + " aluminum") {
 		message.reply("Lowest aluminum price: " + alu_json.lowestbuy.price + "$" + "\n" + "Highest aluminum buyer price: " +
 		alu_json.highestbuy.price + "$" + "\n" +"Last updated: " + updated_last_hour + ":" + updated_last_minutes + " (UTC Time)");
 	}
-	if (msg.content === prefix + "price" + " aluminium") {
+	if (msg.content.toLowerCase() === prefix + "price" + " aluminium") {
 		message.reply("Lowest aluminum price: " + alu_json.lowestbuy.price + "$" + "\n" + "Highest aluminum buyer price: " +
 		alu_json.highestbuy.price + "$" + "\n" +"Last updated: " + updated_last_hour + ":" + updated_last_minutes + " (UTC Time)");
 	}
-	if (msg.content === prefix + "price" + " munitions") {
+	if (msg.content.toLowerCase() === prefix + "price" + " munitions") {
 		message.reply("Lowest munition price: " + munition_json.lowestbuy.price + "$" + "\n" + "Highest munition buyer price: " +
 		munition_json.highestbuy.price + "$" + "\n" +"Last updated: " + updated_last_hour + ":" + updated_last_minutes + " (UTC Time)");
 	}
-	if (msg.content === prefix + "price" + " gasoline") {
+	if (msg.content.toLowerCase() === prefix + "price" + " gasoline") {
 		message.reply("Lowest gasoline price: " + gas_json.lowestbuy.price + "$" + "\n" + "Highest gasoline buyer price: " +
 		gas_json.highestbuy.price + "$" + "\n" +"Last updated: " + updated_last_hour + ":" + updated_last_minutes + " (UTC Time)");
 	}
-	if (msg.content === prefix + "price" + " bauxite") {
+	if (msg.content.toLowerCase() === prefix + "price" + " bauxite") {
 		message.reply("Lowest bauxite price: " + baux_json.lowestbuy.price + "$" + "\n" + "Highest bauxite buyer price: " +
 		baux_json.highestbuy.price + "$" + "\n" +"Last updated: " + updated_last_hour + ":" + updated_last_minutes + " (UTC Time)");
 	}
-	if (msg.content === prefix + "price" + " iron") {
+	if (msg.content.toLowerCase() === prefix + "price" + " iron") {
 		message.reply("Lowest iron price: " + iron_json.lowestbuy.price + "$" + "\n" + "Highest iron buyer price: " +
 		iron_json.highestbuy.price + "$" + "\n" +"Last updated: " + updated_last_hour + ":" + updated_last_minutes + " (UTC Time)");
 	}
-	if (msg.content === prefix + "price" + " lead") {
+	if (msg.content.toLowerCase() === prefix + "price" + " lead") {
 		message.reply("Lowest lead price: " + lead_json.lowestbuy.price + "$" + "\n" + "Highest lead buyer price: " +
 		lead_json.highestbuy.price + "$" + "\n" +"Last updated: " + updated_last_hour + ":" + updated_last_minutes + " (UTC Time)");
 	}
-	if (msg.content === prefix + "price" + " uranium") {
+	if (msg.content.toLowerCase() === prefix + "price" + " uranium") {
 		message.reply("Lowest uranium price: " + uran_json.lowestbuy.price + "$" + "\n" + "Highest uranium buyer price: " +
 		uran_json.highestbuy.price + "$" + "\n" +"Last updated: " + updated_last_hour + ":" + updated_last_minutes + " (UTC Time)");
 	}
-	if (msg.content === prefix + "price" + " oil") {
+	if (msg.content.toLowerCase() === prefix + "price" + " oil") {
 		message.reply("Lowest oil price: " + oil_json.lowestbuy.price + "$" + "\n" + "Highest oil buyer price: " +
 		oil_json.highestbuy.price + "$" + "\n" +"Last updated: " + updated_last_hour + ":" + updated_last_minutes + " (UTC Time)");
 	}
-	if (msg.content === prefix + "price" + " coal") {
+	if (msg.content.toLowerCase() === prefix + "price" + " coal") {
 		message.reply("Lowest coal price: " + coal_json.lowestbuy.price + "$" + "\n" + "Highest coal buyer price: " +
 		coal_json.highestbuy.price + "$" + "\n" +"Last updated: " + updated_last_hour + ":" + updated_last_minutes + " (UTC Time)");
 	}
-	if (msg.content === prefix + "price" + " food") {
+	if (msg.content.toLowerCase() === prefix + "price" + " food") {
 		message.reply("Lowest food price: " + food_json.lowestbuy.price + "$" + "\n" + "Highest food buyer price: " +
 		food_json.highestbuy.price + "$" + "\n" +"Last updated: " + updated_last_hour + ":" + updated_last_minutes + " (UTC Time)");
 	}
-	if (msg.content === prefix + "settings") {
+	if (msg.content.toLowerCase() === prefix + "settings") {
 		message.reply("Use t:setting threshold {resource} {threshold}, 0 = no threshold/remove")
 	}
 
-	if (msg.content === prefix + "help") {
+	if (msg.content.toLowerCase() === prefix + "help") {
 		message.reply("Use t:price {resource} to see current prices (updated every 5 minutes-ish)"+ "\n" + " t:settings if you want to set anything. \n t:request [what you want]");
 	}
 
 	if (msg.isMentioned(client.user)) {
 		message.reply("Use t:help if you need help" + "\n" + "*contact TheGamer01 if you want to report a bug*");
 	}
-	if (msg.content === prefix + "status") {
+	if (msg.content.toLowerCase() === prefix + "status") {
 		message.reply("Market Index: $" + steel_json.marketindex + "\n \n" + "Average Food Price: $" + food_json.avgprice + "\n \n" +
 		"Average Steel Price: $" + steel_json.avgprice + "\n \n" + "Average Aluminum price: $" + alu_json.avgprice + "\n \n" + 
 		"Average Gasoline Price: $" + gas_json.avgprice + "\n \n" + "Average Munition Price: $" + munition_json.avgprice + "\n \n" +
@@ -281,7 +281,7 @@ client.on("message", function(message) {
 		"Average Lead Price: $" + lead_json.avgprice + "\n \n" + "Average Uranium Price: $" + uran_json.avgprice + "\n \n" +
 		"Average Oil Price: $" + oil_json.avgprice + "\n \n" + "Average Coal Price: $" + coal_json.avgprice);
 	}
-	if (msg.content === prefix + "lowest") {
+	if (msg.content.toLowerCase() === prefix + "lowest") {
 		message.reply("Market Index: $" + steel_json.marketindex + "\n \n" + "Lowest Food Price: $" + food_json.lowestbuy.price + "\n \n" +
 		"Lowest Steel Price: $" + steel_json.lowestbuy.price + "\n \n" + "Lowest Aluminum price: $" + alu_json.lowestbuy.price + "\n \n" + 
 		"Lowest Gasoline Price: $" + gas_json.lowestbuy.price + "\n \n" + "Lowest Munition Price: $" + munition_json.lowestbuy.price + "\n \n" +
@@ -289,88 +289,88 @@ client.on("message", function(message) {
 		"Lowest Lead Price: $" + lead_json.lowestbuy.price + "\n \n" + "Lowest Uranium Price: $" + uran_json.lowestbuy.price + "\n \n" +
 		"Lowest Oil Price: $" + oil_json.lowestbuy.price + "\n \n" + "Lowest Coal Price: $" + coal_json.lowestbuy.price);
 	}
-	if (msg.content.startsWith(prefix + "calculate")) {
-		if (msg.content.match(/lowest/i)) {
-			if (msg.content.match(/steel/i)) {
+	if (msg.content.toLowerCase().startsWith(prefix + "calculate")) {
+		if (msg.content.toLowerCase().match(/lowest/i)) {
+			if (msg.content.toLowerCase().match(/steel/i)) {
 				var temp = stripAlphaChars(msg.content)*(steel_json.lowestbuy.price-1);
 				msg.reply("You would make " + temp.toLocaleString() + "$");
-			} else if (msg.content.match(/aluminum/i)) {
+			} else if (msg.content.toLowerCase().match(/aluminum/i)) {
 				var temp = stripAlphaChars(msg.content)*(alu_json.lowestbuy.price-1);
 				msg.reply("You would make " + temp.toLocaleString() + "$");
-			} else if (msg.content.match(/munitions/i)) {
+			} else if (msg.content.toLowerCase().match(/munitions/i)) {
 				var temp = stripAlphaChars(msg.content)*(munition_json.lowestbuy.price-1);
 				msg.reply("You would make " + temp.toLocaleString() + "$");
-			} else if (msg.content.match(/munition/i)) {
+			} else if (msg.content.toLowerCase().match(/munition/i)) {
 				var temp = stripAlphaChars(msg.content)*(munition_json.lowestbuy.price-1);
 				msg.reply("You would make " + temp.toLocaleString() + "$");
-			} else if (msg.content.match(/gasoline/i)) {
+			} else if (msg.content.toLowerCase().match(/gasoline/i)) {
 				var temp = stripAlphaChars(msg.content)*(gas_json.lowestbuy.price-1);
 				msg.reply("You would make " + temp.toLocaleString() + "$");
-			} else if (msg.content.match(/gas/i)) {
+			} else if (msg.content.toLowerCase().match(/gas/i)) {
 				var temp = stripAlphaChars(msg.content)*(gas_json.lowestbuy.price-1);
 				msg.reply("You would make " + temp.toLocaleString() + "$");
-			} else if (msg.content.match(/bauxite/i)) {
+			} else if (msg.content.toLowerCase().match(/bauxite/i)) {
 				var temp = stripAlphaChars(msg.content)*(baux_json.lowestbuy.price-1);
 				msg.reply("You would make " + temp.toLocaleString() + "$");
-			} else if (msg.content.match(/iron/i)) {
+			} else if (msg.content.toLowerCase().match(/iron/i)) {
 				var temp = stripAlphaChars(msg.content)*(iron_json.lowestbuy.price-1);
 				msg.reply("You would make " + temp.toLocaleString() + "$");
-			} else if (msg.content.match(/lead/i)) {
+			} else if (msg.content.toLowerCase().match(/lead/i)) {
 				var temp = stripAlphaChars(msg.content)*(lead_json.lowestbuy.price-1);
 				msg.reply("You would make " + temp.toLocaleString() + "$");
-			} else if (msg.content.match(/uranium/i)) {
+			} else if (msg.content.toLowerCase().match(/uranium/i)) {
 				var temp = stripAlphaChars(msg.content)*(uran_json.lowestbuy.price-1);
 				msg.reply("You would make " + temp.toLocaleString() + "$");
-			} else if (msg.content.match(/oil/i)) {
+			} else if (msg.content.toLowerCase().match(/oil/i)) {
 				var temp = stripAlphaChars(msg.content)*(oil_json.lowestbuy.price-1);
 				msg.reply("You would make " + temp.toLocaleString() + "$");
-			} else if (msg.content.match(/coal/i)) {
+			} else if (msg.content.toLowerCase().match(/coal/i)) {
 				var temp = stripAlphaChars(msg.content)*(coal_json.lowestbuy.price-1);
 				msg.reply("You would make " + temp.toLocaleString() + "$");
-			} else if (msg.content.match(/aluminium/i)) {
+			} else if (msg.content.toLowerCase().match(/aluminium/i)) {
 				var temp = stripAlphaChars(msg.content)*(alu_json.lowestbuy.price-1);
 				msg.reply("You would make " + temp.toLocaleString() + "$");
 			}	else{
 				msg.reply (prefix + "calculate [optional: lowest(lowest price being sold -1$)]{resource} {amount}");
 			}
 		} else {
-			if (msg.content.match(/steel/i)) {
+			if (msg.content.toLowerCase().match(/steel/i)) {
 				var temp = stripAlphaChars(msg.content)*steel_json.avgprice;
 				msg.reply("You would make " + temp.toLocaleString() + "$ using the average price");
-			} else if (msg.content.match(/aluminum/i)) {
+			} else if (msg.content.toLowerCase().match(/aluminum/i)) {
 				var temp = stripAlphaChars(msg.content)*alu_json.avgprice;
 				msg.reply("You would make " + temp.toLocaleString() + "$ using the average price");
-			} else if (msg.content.match(/aluminium/i)) {
+			} else if (msg.content.toLowerCase().match(/aluminium/i)) {
 				var temp = stripAlphaChars(msg.content)*alu_json.avgprice;
 				msg.reply("You would make " + temp.toLocaleString() + "$ using the average price");
-			} else if (msg.content.match(/munitions/i)) {
+			} else if (msg.content.toLowerCase().match(/munitions/i)) {
 				var temp = stripAlphaChars(msg.content)*munition_json.avgprice;
 				msg.reply("You would make " + temp.toLocaleString() + "$ using the average price");
-			} else if (msg.content.match(/munition/i)) {
+			} else if (msg.content.toLowerCase().match(/munition/i)) {
 				var temp = stripAlphaChars(msg.content)*munition_json.avgprice;
 				msg.reply("You would make " + temp.toLocaleString() + "$ using the average price");
-			} else if (msg.content.match(/gasoline/i)) {
+			} else if (msg.content.toLowerCase().match(/gasoline/i)) {
 				var temp = stripAlphaChars(msg.content)*gas_json.avgprice;
 				msg.reply("You would make " + temp.toLocaleString() + "$ using the average price");
-			} else if (msg.content.match(/gas/i)) {
+			} else if (msg.content.toLowerCase().match(/gas/i)) {
 				var temp = stripAlphaChars(msg.content)*gas_json.avgprice;
 				msg.reply("You would make " + temp.toLocaleString() + "$ using the average price");
-			} else if (msg.content.match(/bauxite/i)) {
+			} else if (msg.content.toLowerCase().match(/bauxite/i)) {
 				var temp = stripAlphaChars(msg.content)*baux_json.avgprice;
 				msg.reply("You would make " + temp.toLocaleString() + "$ using the average price");
-			} else if (msg.content.match(/iron/i)) {
+			} else if (msg.content.toLowerCase().match(/iron/i)) {
 				var temp = stripAlphaChars(msg.content)*iron_json.avgprice;
 				msg.reply("You would make " + temp.toLocaleString() + "$ using the average price");
-			} else if (msg.content.match(/lead/i)) {
+			} else if (msg.content.toLowerCase().match(/lead/i)) {
 				var temp = stripAlphaChars(msg.content)*lead_json.avgprice;
 				msg.reply("You would make " + temp.toLocaleString() + "$ using the average price");
-			} else if (msg.content.match(/uranium/i)) {
+			} else if (msg.content.toLowerCase().match(/uranium/i)) {
 				var temp = stripAlphaChars(msg.content)*uran_json.avgprice;
 				msg.reply("You would make " + temp.toLocaleString() + "$ using the average price");
-			} else if (msg.content.match(/oil/i)) {
+			} else if (msg.content.toLowerCase().match(/oil/i)) {
 				var temp = stripAlphaChars(msg.content)*oil_json.avgprice;
 				msg.reply("You would make " + temp.toLocaleString() + "$ using the average price");
-			} else if (msg.content.match(/coal/i)) {
+			} else if (msg.content..toLowerCase().match(/coal/i)) {
 				var temp = stripAlphaChars(msg.content)*coal_json.avgprice;
 				msg.reply("You would make " + temp.toLocaleString() + "$ using the average price");
 			} else{
@@ -378,41 +378,41 @@ client.on("message", function(message) {
 			}
 		}
 	}
-	if (msg.content === prefix + "thresholds") {
+	if (msg.content.toLowerCase() === prefix + "thresholds") {
 		msg.reply("Currently set thresholds \n Steel Threshold: " + steel_threshold + "$ \n Aluminum Threshold: " + alu_threshold + "$ \n Gasoline Threshold: " + 
 		gas_threshold+ "$ \n Munition Threshold: " + ammo_threshold + "$");
 	}
-	if (msg.content.startsWith(prefix + "setting threshold steel")) {
+	if (msg.content.toLowerCase().startsWith(prefix + "setting threshold steel")) {
 		let temp = stripAlphaChars(msg.content);
 		steel_threshold = parseInt(temp, 10);
 		fs.writeFile(process.cwd() + "/data/steel.txt", steel_threshold);
 		client.channels.get("303965170601033748").send("Threshold set");
 	}
-	if (msg.content.startsWith(prefix + "setting threshold aluminum")) {
+	if (msg.content.toLowerCase().startsWith(prefix + "setting threshold aluminum")) {
 		let temp = stripAlphaChars(msg.content);
 		alu_threshold = parseInt(temp, 10);
 		fs.writeFile(process.cwd() + "/data/alu.txt", alu_threshold);
 		client.channels.get("303965170601033748").send("Threshold set");
 	}
-	if (msg.content.startsWith(prefix + "setting threshold aluminium")) {
+	if (msg.content.toLowerCase().startsWith(prefix + "setting threshold aluminium")) {
 		let temp = stripAlphaChars(msg.content);
 		alu_threshold = parseInt(temp, 10);
 		fs.writeFile(process.cwd() + "/data/alu.txt", alu_threshold);
 		client.channels.get("303965170601033748").send("Threshold set");
 	}
-	if (msg.content.startsWith(prefix + "setting threshold gasoline")) {
+	if (msg.content.toLowerCase().startsWith(prefix + "setting threshold gasoline")) {
 		let temp = stripAlphaChars(msg.content);
 		gas_threshold = parseInt(temp, 10);
 		fs.writeFile(process.cwd() + "/data/gas.txt", gas_threshold);
 		client.channels.get("303965170601033748").send("Threshold set");
 	}
-	if (msg.content.startsWith(prefix + "setting threshold munition")) {
+	if (msg.content.toLowerCase().startsWith(prefix + "setting threshold munition")) {
 		let temp = stripAlphaChars(msg.content);
 		ammo_threshold = parseInt(temp, 10);
 		fs.writeFile(process.cwd() + "/data/ammo.txt", ammo_threshold);
 		client.channels.get("303965170601033748").send("Threshold set");
 	}
-	if (msg.content.startsWith(prefix + "setting threshold munitions")) {
+	if (msg.content.toLowerCase().startsWith(prefix + "setting threshold munitions")) {
 		let temp = stripAlphaChars(msg.content);
 		ammo_threshold = parseInt(temp, 10);
 		fs.writeFile(process.cwd() + "/data/ammo.txt", ammo_threshold);
@@ -421,18 +421,18 @@ client.on("message", function(message) {
 	if (msg.author.username === "Kastor") {
 
 	} else {
-		if (msg.content === "pasta") {
+		if (msg.content.toLowerCase() === "pasta") {
 		client.channels.get("303965170601033748").send("u suck <@184525195740971008>");
 	}
-	if (msg.content === "pizza") {
+	if (msg.content.toLowerCase() === "pizza") {
 		client.channels.get("303965170601033748").send("DOWN WITH THE TYRANT");
 	}
 	}
-	if (msg.content === prefix + "update") {
+	if (msg.content.toLowerCase() === prefix + "update") {
 		StartLoop();
 		msg.reply("Updating prices....");
 	}
-	if (msg.content === prefix + "request cancel") {
+	if (msg.content.toLowerCase() === prefix + "request cancel") {
 		if (requesting === true) {
 			msg.reply("Request cancelled");
 			requesting = false;
@@ -440,7 +440,7 @@ client.on("message", function(message) {
 			id_request = null;
 		}
 	}
-	if (msg.content.startsWith(prefix + "request")) {
+	if (msg.content..toLowerCase().startsWith(prefix + "request")) {
 		if (msg.content.match(/id/i)) {
 
 		} else {
@@ -454,7 +454,7 @@ client.on("message", function(message) {
 			}
 		}
 	}
-	if (msg.content.startsWith(prefix + "request id")) {
+	if (msg.content..toLowerCase().startsWith(prefix + "request id")) {
 		if (msg.content.match(/finish/i)) {
 
 		} else {
@@ -464,7 +464,7 @@ client.on("message", function(message) {
 			}
 		}
 	}
-	if (msg.content === prefix + "request finish") {
+	if (msg.content.toLowerCase() === prefix + "request finish") {
 		if (requesting === true) {
 			createRequest();
 			msg.reply("Request added");
@@ -474,7 +474,7 @@ client.on("message", function(message) {
 		});
 		}
 	}
-	if (msg.content === prefix + "list") {
+	if (msg.content.toLowerCase() === prefix + "list") {
 		console.log(request_json);
 		if (request_json == null) {
 			msg.reply("No requests found!");
@@ -487,7 +487,7 @@ client.on("message", function(message) {
 			}
 		}
 	}
-	if (msg.content === prefix + "clear") {
+	if (msg.content.toLowerCase() === prefix + "clear") {
 		if (confirm === false) {
 			msg.reply("Are you sure? Type again to confirm");
 			confirm = true;
