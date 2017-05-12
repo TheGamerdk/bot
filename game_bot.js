@@ -440,7 +440,7 @@ client.on("message", function(message) {
 			id_request = null;
 		}
 	}
-	if (msg.content..toLowerCase().startsWith(prefix + "request")) {
+	if (msg.content.toLowerCase().startsWith(prefix + "request")) {
 		if (msg.content.match(/id/i)) {
 
 		} else {
