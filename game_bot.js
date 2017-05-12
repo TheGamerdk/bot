@@ -454,7 +454,7 @@ client.on("message", function(message) {
 			}
 		}
 	}
-	if (msg.content..toLowerCase().startsWith(prefix + "request id")) {
+	if (msg.content.toLowerCase().startsWith(prefix + "request id")) {
 		if (msg.content.match(/finish/i)) {
 
 		} else {
