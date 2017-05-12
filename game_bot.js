@@ -418,16 +418,6 @@ client.on("message", function(message) {
 		fs.writeFile(process.cwd() + "/data/ammo.txt", ammo_threshold);
 		client.channels.get("303965170601033748").send("Threshold set");
 	}
-	if (msg.author.username === "Kastor") {
-
-	} else {
-		if (msg.content.toLowerCase() === "pasta") {
-		client.channels.get("303965170601033748").send("u suck <@184525195740971008>");
-	}
-	if (msg.content.toLowerCase() === "pizza") {
-		client.channels.get("303965170601033748").send("DOWN WITH THE TYRANT");
-	}
-	}
 	if (msg.content.toLowerCase() === prefix + "update") {
 		StartLoop();
 		msg.reply("Updating prices....");
