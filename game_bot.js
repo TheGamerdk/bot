@@ -370,7 +370,7 @@ client.on("message", function(message) {
 			} else if (msg.content.toLowerCase().match(/oil/i)) {
 				var temp = stripAlphaChars(msg.content)*oil_json.avgprice;
 				msg.reply("You would make " + temp.toLocaleString() + "$ using the average price");
-			} else if (msg.content..toLowerCase().match(/coal/i)) {
+			} else if (msg.content.toLowerCase().match(/coal/i)) {
 				var temp = stripAlphaChars(msg.content)*coal_json.avgprice;
 				msg.reply("You would make " + temp.toLocaleString() + "$ using the average price");
 			} else{
