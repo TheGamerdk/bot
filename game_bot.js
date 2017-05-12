@@ -637,6 +637,20 @@ function firstWarData() {
 	StartWarLoop();
 }
 
+function updateWar() {
+	ids = null;
+	wars = null;
+	for (var i = 0; i < war_json.nations.length; i++) {
+		var obj = war_json.nations[i];
+
+		if (obj.alliance == "Lordaeron") {
+			ids.push(obj.nationid);
+			wars.push(obj.defensivewars);
+			
+		}
+	}
+}
+
 var setup = false;
 
 function StartWarLoop() {
@@ -657,6 +671,7 @@ function processWarDeclarations() {
 					console.log(wars[i]);
 					console.log(obj.defensivewars);
 					client.channels.get("303964576603701249").send("<@259835683861037056> <@224426427833909248> ALERT " + obj.leader + " was attacked by an enemy! \n https://politicsandwar.com/nation/id=" + obj.nationid + "&display=war");
+					updateWar();
 				}
 			}
 		}
