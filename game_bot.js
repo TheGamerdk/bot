@@ -655,9 +655,8 @@ function processWarDeclarations() {
 		for (var i2 = 0; i2 < war_json.nations.length; i2++) {
 			var obj = war_json.nations[i2];
 			if (obj.nationid == ids[i]) {
-				if (obj.defensivewars <= wars[i]) {
+				if (obj.defensivewars >= wars[i]) {
 				} else {
-
 					console.log(wars[i]);
 					console.log(obj.defensivewars);
 					client.channels.get("303964576603701249").send("<@259835683861037056> <@224426427833909248> ALERT " + obj.leader + " was attacked by an enemy! \n https://politicsandwar.com/nation/id=" + obj.nationid + "&display=war");
